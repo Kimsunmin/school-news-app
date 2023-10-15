@@ -4,7 +4,8 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { DataBaseConfigModule } from './config/db/config.module';
 import { DataBaseConfigService } from './config/db/config.service';
-import { AdminModule } from './admin/admin.module';
+import { StudentModule } from './api/student/student.module';
+import { AdminModule } from './api/admin/admin.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { AdminModule } from './admin/admin.module';
       inject: [ DataBaseConfigService ],
     }),
     AdminModule,
+    StudentModule,
   ],
   controllers: [AppController],
   providers: [AppService],

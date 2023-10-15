@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Repository, DataSource } from 'typeorm';
-import { News } from '../entitiy/news.entitiy';
+import { News } from './news.entitiy';
 import { CreateNewsDto } from '../dto/create-news.dto';
-import { School } from '../entitiy/school.entitiy';
+import { School } from '../school/school.entitiy';
 
 
 @Injectable()
@@ -29,6 +29,11 @@ export class NewsRepository extends Repository<News> {
         if(!found) {
             throw new NotFoundException(`Not found News with id ${newsId}`);
         }
+        return found;
+    }
+
+    async getNewsBySchoolId(schoolId: number): Promise<News[]> {
+        const found: News[] = await this.find({where: {school: {id: schoolId}}, order: { updatedAt: 'DESC' }});
         return found;
     }
 

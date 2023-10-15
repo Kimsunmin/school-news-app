@@ -1,5 +1,5 @@
 import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, ManyToOne } from 'typeorm'
-import { School } from './school.entitiy';
+import { School } from '../school/school.entitiy';
 
 @Entity()
 export class News extends BaseEntity {

@@ -1,15 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { AdminRepository } from './repository/admin.repository';
-import { SchoolRepository } from './repository/school.repository';
-import { School } from './entitiy/school.entitiy';
-import { CreateSchoolDto } from './dto/create-school.dto';
-import { CreateNewsDto } from './dto/create-news.dto';
-import { NewsRepository } from './repository/news.repository';
+import { CreateNewsDto } from 'src/libs/dto/create-news.dto';
+import { CreateSchoolDto } from 'src/libs/dto/create-school.dto';
+import { NewsRepository } from 'src/libs/news/news.repository';
+import { School } from 'src/libs/school/school.entitiy';
+import { SchoolRepository } from 'src/libs/school/school.repository';
 
 @Injectable()
 export class AdminService {
     constructor(
-        private adminRepository: AdminRepository,
         private schoolRespository: SchoolRepository,
         private newsRepository: NewsRepository,
     ) {}
@@ -17,7 +15,6 @@ export class AdminService {
     createSchool(createSchoolDto: CreateSchoolDto) {
         return this.schoolRespository.createSchool(createSchoolDto);
     }
-
 
     async createNews(createNewsDto: CreateNewsDto, schoolId: number) {
         const school: School = await this.schoolRespository.findOne({where: {id: schoolId}});

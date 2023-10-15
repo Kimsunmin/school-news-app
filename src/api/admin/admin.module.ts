@@ -1,21 +1,21 @@
 import { Module } from '@nestjs/common';
 import { AdminController } from './admin.controller';
 import { AdminService } from './admin.service';
-import { AdminRepository } from './repository/admin.repository';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Admin } from './entitiy/admin.entitiy';
-import { School } from './entitiy/school.entitiy';
-import { SchoolRepository } from './repository/school.repository';
-import { NewsRepository } from './repository/news.repository';
+import { News } from 'src/libs/news/news.entitiy';
+import { School } from 'src/libs/school/school.entitiy';
+import { SchoolRepository } from 'src/libs/school/school.repository';
+import { NewsRepository } from 'src/libs/news/news.repository';
+
+
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([ Admin, School ])
+    TypeOrmModule.forFeature([ News ,School ])
   ],
   controllers: [AdminController],
   providers: [
     AdminService,
-    AdminRepository,
     SchoolRepository,
     NewsRepository,
   ]

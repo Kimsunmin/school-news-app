@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Patch, Delete, Body, Param } from '@nestjs/common';
 import { AdminService } from './admin.service';
-import { CreateSchoolDto } from './dto/create-school.dto';
-import { CreateNewsDto } from './dto/create-news.dto';
+import { CreateNewsDto } from '../../libs/dto/create-news.dto';
+import { CreateSchoolDto } from 'src/libs/dto/create-school.dto';
 
 @Controller({path: 'admin', version: '1'})
 export class AdminController {
@@ -23,7 +23,7 @@ export class AdminController {
         return this.adminService.createNews(createNewsDto, schoolId);
     }
 
-    // 학교 소식 수장
+    // 학교 소식 수정
     @Patch('/update-news/:newsId')
     updateNews(
         @Body() createNewsDto: CreateNewsDto,
