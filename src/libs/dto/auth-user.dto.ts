@@ -1,7 +1,7 @@
-import { UserJob } from "../enum/user-job.enum";
+import { UserRole } from "../enum/user-role.enum";
 
 export class AuthUserDto {
     username: string;
     password: string;
-    job: UserJob;
+    role: UserRole;
 }

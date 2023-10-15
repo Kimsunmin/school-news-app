@@ -11,9 +11,9 @@ export class UserRepository extends Repository<User> {
 
     async createUser(authUserDto: AuthUserDto) {
         
-        const { username, password, job } = authUserDto;
+        const { username, password, role } = authUserDto;
         
-        const user: User = this.create({username, password, job});
+        const user: User = this.create({username, password, role});
         await this.save(user);
     }
 

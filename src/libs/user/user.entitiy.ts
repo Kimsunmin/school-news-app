@@ -1,5 +1,5 @@
 import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, CreateDateColumn } from 'typeorm'
-import { UserJob } from '../enum/user-job.enum';
+import { UserRole } from '../enum/user-role.enum';
 
 @Entity()
 export class User extends BaseEntity {
@@ -14,7 +14,7 @@ export class User extends BaseEntity {
     password: string;
 
     @Column({ comment: '유저 구분' })
-    job: UserJob;
+    role: UserRole;
 
     @CreateDateColumn()
     createdAt: Date;
