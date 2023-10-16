@@ -6,10 +6,12 @@ import { UserRole } from 'src/libs/enum/user-role.enum';
 import { RolesGuard } from '../auth/roles.guard';
 import { AuthGuard } from '@nestjs/passport';
 import { GetUser } from '../auth/get-user.decorator';
+import { ApiTags } from '@nestjs/swagger';
 
 @Roles(UserRole.STUDENT)
 @UseGuards(AuthGuard(), RolesGuard)
 @Controller({path: 'student', version: '1'})
+@ApiTags('학생 API')
 export class StudentController {
     constructor(private studentService: StudentService) {}
 

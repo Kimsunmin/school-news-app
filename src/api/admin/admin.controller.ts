@@ -8,10 +8,12 @@ import { UserRole } from 'src/libs/enum/user-role.enum';
 import { RolesGuard } from '../auth/roles.guard';
 import { GetUser } from '../auth/get-user.decorator';
 import { User } from 'src/libs/user/user.entitiy';
+import { ApiTags } from '@nestjs/swagger';
 
 @Roles(UserRole.ADMIN)
 @UseGuards(AuthGuard(), RolesGuard)
 @Controller({path: 'admin', version: '1'})
+@ApiTags('관리자 API')
 export class AdminController {
 
     constructor(private adminService: AdminService) {}
