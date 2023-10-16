@@ -6,12 +6,14 @@ import { News } from 'src/libs/news/news.entitiy';
 import { School } from 'src/libs/school/school.entitiy';
 import { SchoolRepository } from 'src/libs/school/school.repository';
 import { NewsRepository } from 'src/libs/news/news.repository';
+import { AuthModule } from '../auth/auth.module';
 
 
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([ News ,School ])
+    TypeOrmModule.forFeature([ News ,School ]),
+    AuthModule,
   ],
   controllers: [AdminController],
   providers: [

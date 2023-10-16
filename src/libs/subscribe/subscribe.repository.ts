@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { ConflictException, Injectable, InternalServerErrorException, NotFoundException } from "@nestjs/common";
 import { DataSource, Repository } from "typeorm";
 import { Subscribe } from "./subscribe.entitiy";
 import { User } from "../user/user.entitiy";
@@ -16,7 +16,17 @@ export class SubscribeRepository extends Repository<Subscribe> {
             user,
             school
         });
-        return await this.save(subscribe);
+
+        try {
+            const res = await this.save(subscribe);
+            return res;
+        } catch(err) {
+            if(err.code === '23505'){
+                throw new ConflictException(`Existing Subscribe`);
+            } else {
+                throw new InternalServerErrorException();
+            }
+        }        
     }
 
     // 구독한 페이지 목록 조회
@@ -25,8 +35,11 @@ export class SubscribeRepository extends Repository<Subscribe> {
     }
 
     // 구독 취소
-    async deleteSubscribe(subscribeId: number) {
-        const result = await this.softDelete(subscribeId);
+    async deleteSubscribe(subscribeId: number, user: User) {
+        //const result = await this.softDelete(subscribeId);
+        const result = await this.createQueryBuilder('subscribe').softDelete().where(
+            'subscribe.id = :id and subscribe."userId" = :userId', {id: subscribeId, userId: user.id}
+        ).execute();
 
         if(result.affected === 0) {
             throw new NotFoundException(`Can't not found id ${subscribeId}`);

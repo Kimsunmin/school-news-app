@@ -3,6 +3,7 @@ import { Repository, DataSource } from 'typeorm';
 import { News } from './news.entitiy';
 import { CreateNewsDto } from '../dto/create-news.dto';
 import { School } from '../school/school.entitiy';
+import { User } from '../user/user.entitiy';
 
 
 @Injectable()
@@ -11,13 +12,14 @@ export class NewsRepository extends Repository<News> {
         super(News, dataSource.createEntityManager());
     }
 
-    async createNews(createNewsDto: CreateNewsDto, school: School): Promise<News> {
+    async createNews(createNewsDto: CreateNewsDto, school: School, user: User): Promise<News> {
         const { title, description } = createNewsDto;
 
         const news: News = this.create({
             title,
             description,
             school,
+            user,
         });
 
         return this.save(news);
@@ -37,12 +39,13 @@ export class NewsRepository extends Repository<News> {
         return found;
     }
 
-    async updateNews(createNewsDto: CreateNewsDto, newsId: number): Promise<News> {
+    async updateNews(createNewsDto: CreateNewsDto, newsId: number, user: User): Promise<News> {
         const found: News = await this.getNewsById(newsId);
 
         const { title, description } = createNewsDto;
         found.title = title;
         found.description = description;
+        found.user = user;
 
         return this.save(found);
     }

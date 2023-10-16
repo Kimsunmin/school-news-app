@@ -6,10 +6,10 @@ import { UserRepository } from 'src/libs/user/user.repository';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './jwt.strategy';
+import { RolesGuard } from './roles.guard';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([ UserRepository ]),
     JwtModule.register({
       secret: 'classting1234',
       signOptions: {
@@ -25,6 +25,12 @@ import { JwtStrategy } from './jwt.strategy';
     AuthService,
     JwtStrategy,
     UserRepository,
+    RolesGuard,
+  ],
+  exports: [
+    JwtStrategy,
+    PassportModule,
+    RolesGuard,
   ]
 })
 export class AuthModule {}

@@ -27,8 +27,8 @@ export class StudentService {
         return this.newsRepository.getNewsBySchoolId(schoolId);
     }
 
-    deleteSubscribeById(id: number) {
-        return this.subscribeRepository.deleteSubscribe(id);
+    deleteSubscribeById(id: number, user: User) {
+        return this.subscribeRepository.deleteSubscribe(id, user);
     }
 
 }

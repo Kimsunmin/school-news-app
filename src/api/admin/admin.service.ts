@@ -4,6 +4,7 @@ import { CreateSchoolDto } from 'src/libs/dto/create-school.dto';
 import { NewsRepository } from 'src/libs/news/news.repository';
 import { School } from 'src/libs/school/school.entitiy';
 import { SchoolRepository } from 'src/libs/school/school.repository';
+import { User } from 'src/libs/user/user.entitiy';
 
 @Injectable()
 export class AdminService {
@@ -12,17 +13,17 @@ export class AdminService {
         private newsRepository: NewsRepository,
     ) {}
 
-    createSchool(createSchoolDto: CreateSchoolDto) {
-        return this.schoolRespository.createSchool(createSchoolDto);
+    createSchool(createSchoolDto: CreateSchoolDto, user: User) {
+        return this.schoolRespository.createSchool(createSchoolDto, user);
     }
 
-    async createNews(createNewsDto: CreateNewsDto, schoolId: number) {
+    async createNews(createNewsDto: CreateNewsDto, schoolId: number, user: User) {
         const school: School = await this.schoolRespository.findOne({where: {id: schoolId}});
-        return this.newsRepository.createNews(createNewsDto, school);
+        return this.newsRepository.createNews(createNewsDto, school, user);
     }
 
-    updateNews(createNewsDto: CreateNewsDto, newsId: number) {
-        return this.newsRepository.updateNews(createNewsDto, newsId);
+    updateNews(createNewsDto: CreateNewsDto, newsId: number, user: User) {
+        return this.newsRepository.updateNews(createNewsDto, newsId, user);
     }
 
     deleteNews(newsId: number) {

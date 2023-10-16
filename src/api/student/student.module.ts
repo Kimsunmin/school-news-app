@@ -8,10 +8,12 @@ import { School } from 'src/libs/school/school.entitiy';
 import { NewsRepository } from 'src/libs/news/news.repository';
 import { SubscribeRepository } from 'src/libs/subscribe/subscribe.repository';
 import { SchoolRepository } from 'src/libs/school/school.repository';
+import { AuthModule } from '../auth/auth.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([ News, Subscribe, School ])
+    TypeOrmModule.forFeature([ News, Subscribe, School ]),
+    AuthModule,
   ],
   controllers: [StudentController],
   providers: [
