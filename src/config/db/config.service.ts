@@ -7,7 +7,7 @@ export class DataBaseConfigService implements TypeOrmOptionsFactory {
     constructor(private configService: ConfigService) {}
 
     createTypeOrmOptions(): TypeOrmModuleOptions {
-        
+        console.log(__dirname);
         return {
             type: 'postgres',
             username: this.configService.get<string>('DB_USERNAME'),

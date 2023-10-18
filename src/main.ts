@@ -28,7 +28,13 @@ function setupSwagger(app: INestApplication, port: number): void {
     .setDescription('NestJS School News app API Description')
     .setVersion('1.0')
     .addServer(`http://localhost:${port}/api/v1`, 'local')
-    .addBearerAuth()
+    .addBearerAuth({
+      type: 'http',
+      scheme: 'bearer',
+      bearerFormat: 'JWT',
+      name: 'JWT',
+      in: 'header'
+    })
     .build();
 
   const doc = SwaggerModule.createDocument(app, opts);

@@ -1,19 +1,22 @@
 import { Controller, Get, Post, Patch, Delete, Body, Param, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AdminService } from './admin.service';
-import { CreateNewsDto } from '../../libs/dto/create-news.dto';
-import { CreateSchoolDto } from 'src/libs/dto/create-school.dto';
+import { CreateNewsDto } from '@libs/dto/create-news.dto';
+import { CreateSchoolDto } from '@libs/dto/create-school.dto';
 import { Roles } from '../auth/roles.decorator';
-import { UserRole } from 'src/libs/enum/user-role.enum';
+import { UserRole } from '@libs/enum/user-role.enum';
 import { RolesGuard } from '../auth/roles.guard';
 import { GetUser } from '../auth/get-user.decorator';
-import { User } from 'src/libs/user/user.entitiy';
-import { ApiTags, ApiOperation, ApiBody } from '@nestjs/swagger';
+import { User } from '@libs/user/user.entitiy';
+import { ApiTags, ApiOperation, ApiBody, ApiBearerAuth } from '@nestjs/swagger';
+import { School } from '@libs/school/school.entitiy';
+import { News } from '@libs/news/news.entitiy';
 
 @Roles(UserRole.ADMIN)
 @UseGuards(AuthGuard(), RolesGuard)
 @Controller({path: 'admin', version: '1'})
 @ApiTags('관리자 API')
+@ApiBearerAuth()
 export class AdminController {
 
     constructor(private adminService: AdminService) {}
@@ -24,7 +27,7 @@ export class AdminController {
     createSchool(
         @Body() createSchoolDto: CreateSchoolDto,
         @GetUser() user: User,
-    ) {
+    ): Promise<School> {
         return this.adminService.createSchool(createSchoolDto, user);
     }
 
@@ -36,7 +39,7 @@ export class AdminController {
         @Param('schoolId') schoolId: number,
         @Body() createNewsDto: CreateNewsDto,
         @GetUser() user: User,
-    ) {
+    ): Promise<News> {
         return this.adminService.createNews(createNewsDto, schoolId, user);
     }
 
@@ -48,7 +51,7 @@ export class AdminController {
         @Body() createNewsDto: CreateNewsDto,
         @Param('newsId') newsId: number,
         @GetUser() user: User,
-    ) {
+    ): Promise<News> {
         return this.adminService.updateNews(createNewsDto, newsId, user);
     }
     
@@ -58,7 +61,7 @@ export class AdminController {
     deleteNews(
         @Param('newsId') newsId: number,
         @GetUser() user: User,
-    ) {
+    ): Promise<void> {
         return this.adminService.deleteNews(newsId);
     }
 

@@ -35,7 +35,7 @@ export class SubscribeRepository extends Repository<Subscribe> {
     }
 
     // 구독 취소
-    async deleteSubscribe(subscribeId: number, user: User) {
+    async deleteSubscribe(subscribeId: number, user: User): Promise<void> {
         //const result = await this.softDelete(subscribeId);
         const result = await this.createQueryBuilder('subscribe').softDelete().where(
             'subscribe.id = :id and subscribe."userId" = :userId', {id: subscribeId, userId: user.id}

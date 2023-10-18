@@ -1,8 +1,9 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, CreateDateColumn, OneToMany, ManyToOne } from 'typeorm'
+import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, CreateDateColumn, OneToMany, ManyToOne, Unique } from 'typeorm'
 import { News } from '../news/news.entitiy';
 import { User } from '../user/user.entitiy';
 
 @Entity()
+@Unique(['name'])
 export class School extends BaseEntity {
 
     @PrimaryGeneratedColumn({ comment: '고유번호' })

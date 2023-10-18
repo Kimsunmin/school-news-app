@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { NewsRepository } from 'src/libs/news/news.repository';
-import { School } from 'src/libs/school/school.entitiy';
-import { SchoolRepository } from 'src/libs/school/school.repository';
-import { Subscribe } from 'src/libs/subscribe/subscribe.entitiy';
-import { SubscribeRepository } from 'src/libs/subscribe/subscribe.repository';
-import { User } from 'src/libs/user/user.entitiy';
+import { NewsRepository } from '@libs/news/news.repository';
+import { School } from '@libs/school/school.entitiy';
+import { SchoolRepository } from '@libs/school/school.repository';
+import { Subscribe } from '@libs/subscribe/subscribe.entitiy';
+import { SubscribeRepository } from '@libs/subscribe/subscribe.repository';
+import { User } from '@libs/user/user.entitiy';
+import { News } from '@libs/news/news.entitiy';
 
 @Injectable()
 export class StudentService {
@@ -23,11 +24,11 @@ export class StudentService {
         return this.subscribeRepository.getSubscribeByUser(user);
     }
 
-    getNewsBySchool(schoolId: number) {
+    getNewsBySchool(schoolId: number): Promise<News[]> {
         return this.newsRepository.getNewsBySchoolId(schoolId);
     }
 
-    deleteSubscribeById(id: number, user: User) {
+    deleteSubscribeById(id: number, user: User): Promise<void> {
         return this.subscribeRepository.deleteSubscribe(id, user);
     }
 

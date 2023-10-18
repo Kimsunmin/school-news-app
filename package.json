@@ -28,7 +28,9 @@
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/swagger": "^7.1.13",
     "@nestjs/typeorm": "^10.0.0",
+    "@types/bcryptjs": "^2.4.5",
     "@types/passport-jwt": "^3.0.10",
+    "bcryptjs": "^2.4.3",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
     "pg": "^8.11.3",
@@ -73,6 +75,9 @@
     "collectCoverageFrom": [
       "**/*.(t|j)s"
     ],
+    "moduleNameMapper": {
+      "^@libs/(.*)$": "<rootDir>/libs/$1"
+    },
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
   }

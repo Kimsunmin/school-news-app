@@ -50,13 +50,12 @@ export class NewsRepository extends Repository<News> {
         return this.save(found);
     }
 
-    async deleteNews(newsId: number) {
+    async deleteNews(newsId: number): Promise<void> {
 
         const result = await this.softDelete(newsId);
         
         if(result.affected === 0) {
             throw new NotFoundException(`Can't find News with id ${newsId}`);
         }
-        return result;
     }
 }
