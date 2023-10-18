@@ -13,7 +13,7 @@ $ npm install
 .env sample (해당 프로젝트는 postgresql5 사용)
 ```
 # Server
-PORT=
+PORT=3000
 
 # DataBase 
 DB_HOST=
@@ -38,8 +38,8 @@ $ npm run start:dev
 ```
 
 ## Docs & Test
-아래의 경로로 접근
-```
-http://localhost:{port}/api-docs
-```
+http://localhost:3000/api-docs
 
+
+## API
+### BASE_URL: http://localhost:3000/api/v1
