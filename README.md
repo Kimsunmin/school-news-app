@@ -29,7 +29,26 @@
 ## Installation
 
 ```bash
+$ git clone https://github.com/Kimsunmin/school-news-app.git
 $ npm install
+```
+
+## Make .env
+.env sample
+```
+# Server
+PORT=
+
+# DataBase (해당 프로젝트는 postgresql5 사용)
+DB_HOST=
+DB_PORT=
+DB_USERNAME=
+DB_PASSWORD=
+DB_DATABASE=
+
+# JWT
+SECRET_KEY=
+EXPIRES_IN=360s
 ```
 
 ## Running the app
@@ -40,34 +59,11 @@ $ npm run start
 
 # watch mode
 $ npm run start:dev
-
-# production mode
-$ npm run start:prod
 ```
 
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+## Docs & Test
+아래의 경로로 접근
+```
+http://localhost:{port}/api-docs
 ```
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
