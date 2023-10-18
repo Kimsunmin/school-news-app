@@ -14,7 +14,7 @@ import { News } from '@libs/news/news.entitiy';
 @UseGuards(AuthGuard(), RolesGuard)
 @Controller({path: 'student', version: '1'})
 @ApiTags('학생 API')
-@ApiBearerAuth('access-token')
+@ApiBearerAuth()
 export class StudentController {
     constructor(private studentService: StudentService) {}
 

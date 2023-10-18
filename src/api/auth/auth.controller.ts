@@ -10,6 +10,8 @@ export class AuthController {
     constructor(private authService: AuthService){}
 
     @Post('signon')
+    @ApiOperation({ summary: '유저 생성', description: '유저 생성' })
+    @ApiBody({ type: AuthUserDto, description: '유저정보' })
     signOn(@Body() authUserDto: AuthUserDto): Promise<void> {
         return this.authService.signUp(authUserDto);
     }

@@ -3,6 +3,7 @@ import { UserRepository } from '@libs/user/user.repository';
 import { JwtService } from '@nestjs/jwt'
 import { AuthUserDto } from '@libs/dto/auth-user.dto';
 import { User } from '@libs/user/user.entitiy';
+import * as bcrypt from 'bcryptjs';
 
 @Injectable()
 export class AuthService {
@@ -22,7 +23,7 @@ export class AuthService {
         });
 
         // 추후 암호화 추가
-        if(user &&  user.password === password){
+        if(user && ( await bcrypt.compare(password, user.password))){
             const payload = { id: user.id, username, role };
             const accessToken = this.jwtService.sign(payload);
 

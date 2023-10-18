@@ -19,7 +19,6 @@ export class DataBaseConfigService implements TypeOrmOptionsFactory {
                 `${__dirname}/../../libs/**/*.entitiy.{js, ts}`,
             ],
             synchronize: true,
-            logging: true,
         };
     }
 
