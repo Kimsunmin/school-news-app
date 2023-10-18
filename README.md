@@ -39,6 +39,8 @@ $ npm run start:dev
 
 ## Docs & Test
 http://localhost:3000/api-docs
+또는
+프로젝트 내에 Specification.yaml을 https://editor.swagger.io/ 에서 확인 가능
 
 
 ## API
