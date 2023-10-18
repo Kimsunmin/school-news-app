@@ -42,4 +42,22 @@ http://localhost:3000/api-docs
 
 
 ## API
-### BASE_URL: http://localhost:3000/api/v1
+- Controller
+```
+POST: /auth/signon  유저생성
+POST: /auth/signin  유저 토큰 생성
+```
+```
+- 권한 role: ADMIN
+POST: /admin/create-school  학교 페이지 생성
+POST: /admin/{schoolId}/create-news 학교 소식 생성
+PATCH: /admin/update-news/{newsId}  학교 소식 수정
+DELETE: /admin/delete-news/{newsId}  학교 소식 삭제
+```
+```
+- 권한 role: STUDENT
+POST: /student/subscribe/{schoolId}  학교 페이지 구독
+GET: /student/subscribe  구독 목록 조회
+GET: /student/{schoolId}/news  학교 페이지 소식 조회
+DELETE: /student/subscribe-cancel/{id} 학교 페이지 구독 취소
+```
